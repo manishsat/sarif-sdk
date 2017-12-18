@@ -79,6 +79,24 @@ namespace Microsoft.Sarif.Viewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open File.
+        /// </summary>
+        internal static string FileProcessFail_DialogCaption {
+            get {
+                return ResourceManager.GetString("FileProcessFail_DialogCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; is invalid or corrupt and couldn&apos;t be processed..
+        /// </summary>
+        internal static string FileProcessFail_DialogMessage {
+            get {
+                return ResourceManager.GetString("FileProcessFail_DialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Return.
         /// </summary>
         internal static string ReturnMessage {

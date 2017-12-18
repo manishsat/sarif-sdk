@@ -17,6 +17,7 @@ using Microsoft.CodeAnalysis.Sarif.Writers;
 using Microsoft.Sarif.Viewer.Models;
 using Newtonsoft.Json;
 using Microsoft.Sarif.Viewer.Sarif;
+using System.Windows;
 
 namespace Microsoft.Sarif.Viewer.ErrorList
 {
@@ -26,14 +27,14 @@ namespace Microsoft.Sarif.Viewer.ErrorList
 
         public static void ProcessLogFile(string filePath, Solution solution, string toolFormat = ToolFormat.None)
         {
-            SarifLog log;
+            SarifLog log = null;
 
             JsonSerializerSettings settings = new JsonSerializerSettings()
             {
                 ContractResolver = SarifContractResolver.Instance,
             };
 
-            string logText;
+            string logText = null;
 
             if (toolFormat.MatchesToolFormat(ToolFormat.None))
             {
@@ -47,22 +48,44 @@ namespace Microsoft.Sarif.Viewer.ErrorList
 
                 using (var input = new MemoryStream(File.ReadAllBytes(filePath)))
                 {
-                    var outputTextWriter = new StringWriter(sb);                
+                    var outputTextWriter = new StringWriter(sb);
                     var outputJson = new JsonTextWriter(outputTextWriter);
                     var output = new ResultLogJsonWriter(outputJson);
 
                     input.Seek(0, SeekOrigin.Begin);
-                    converter.ConvertToStandardFormat(toolFormat, input, output);
 
-                    // This is serving as a flush mechanism
-                    output.Dispose();
+                    try
+                    {
+                        converter.ConvertToStandardFormat(toolFormat, input, output);
 
-                    logText = sb.ToString();
+                        logText = sb.ToString();
+                    }
+                    catch (InvalidOperationException) { } // Invalid or unreadable input
+                    finally
+                    {
+                        // This is serving as a flush mechanism
+                        output.Dispose();
+                    }
                 }
             }
 
-            log = JsonConvert.DeserializeObject<SarifLog>(logText, settings);
-            ProcessSarifLog(log, filePath, solution);
+            if (!string.IsNullOrWhiteSpace(logText))
+            {
+                try
+                {
+                    log = JsonConvert.DeserializeObject<SarifLog>(logText, settings);
+                    ProcessSarifLog(log, filePath, solution);
+                }
+                catch (JsonSerializationException) { }
+            }
+
+            if (log == null)
+            {
+                MessageBox.Show(Resources.FileProcessFail_DialogMessage,
+                                Resources.FileProcessFail_DialogCaption,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+            }
 
             SarifTableDataSource.Instance.BringToFront();
         }
