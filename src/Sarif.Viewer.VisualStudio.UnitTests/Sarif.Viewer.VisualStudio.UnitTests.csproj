@@ -15,7 +15,10 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., build.props))\build.props" />
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -30,11 +33,46 @@
     <Reference Include="Moq, Version=4.7.142.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.142\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="Sarif, Version=1.7.1.0, Culture=neutral, PublicKeyToken=21a5e83f6f5bb844, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Sdk.1.7.1\lib\net452\Sarif.dll</HintPath>
+    </Reference>
+    <Reference Include="Sarif.Driver, Version=1.7.1.0, Culture=neutral, PublicKeyToken=21a5e83f6f5bb844, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Driver.1.7.1-beta\lib\net452\Sarif.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.AttributedModel.1.1.0\lib\netstandard2.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Convention.1.1.0\lib\netstandard2.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Hosting.1.1.0\lib\netstandard2.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Runtime.1.1.0\lib\netstandard2.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.TypedParts.1.1.0\lib\netstandard2.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.0.0-rc2-24027\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.1.0-rc2-24027\lib\net46\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,11 +122,6 @@
     <ProjectReference Include="..\Sarif.Viewer.VisualStudio\Sarif.Viewer.VisualStudio.csproj">
       <Project>{febe7a56-524c-4b76-a899-23dbd8951c23}</Project>
       <Name>Sarif.Viewer.VisualStudio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sarif\Sarif.csproj">
-      <Project>{c5fc2683-47cf-447f-b5ea-9fde0fd78754}</Project>
-      <Name>Sarif</Name>
-      <AdditionalProperties>TargetFramework=net452</AdditionalProperties>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
