@@ -96,6 +96,12 @@ if "%ERRORLEVEL%" NEQ "0" (
 goto ExitFailed
 )
 
+@REM Build SARIF Viewer
+msbuild /verbosity:minimal /target:rebuild src\Sarif.Viewer.VisualStudio.sln /p:Configuration=%Configuration% /p:Platform="Any CPU" /filelogger /fileloggerparameters:Verbosity=detailed /p:AutoGenerateBindingRedirects=false
+if "%ERRORLEVEL%" NEQ "0" (
+goto ExitFailed
+)
+
 @REM Run all tests
 
 pushd .\src\Sarif.Converters.UnitTests && dotnet xunit -nobuild -configuration Release && popd
