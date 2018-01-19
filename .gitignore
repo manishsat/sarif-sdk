@@ -156,7 +156,7 @@ publish/
 **/packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
-# except build/, which is used as an MSBuild target.
+# except nuget/, where the signed 3rd-party packages live
 !**/nuget/*.nupkg
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
