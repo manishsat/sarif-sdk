@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Adornments;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -69,7 +68,7 @@ namespace Microsoft.Sarif.Viewer
 
             if (!File.Exists(this.FullFilePath))
             {
-                if (!CodeAnalysisResultManager.Instance.TryRebaselineCurrentSarifError(this.UriBaseId, this.FullFilePath))
+                if (!CodeAnalysisResultManager.Instance.TryRebaselineAllSarifErrors(this.UriBaseId, this.FullFilePath))
                 {
                     return null;
                 }
